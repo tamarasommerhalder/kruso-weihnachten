@@ -175,6 +175,8 @@ form .hint{margin:0;color:var(--muted);font-size:.88rem}
 .bringlist .dots{flex:1;min-width:12px;margin:0;border-bottom:2px dotted #b8a891;transform:translateY(-6px)}
 .bringlist .who{color:#b0263d;font-size:inherit;margin:0;white-space:nowrap}
 .bringbox p{line-height:38px;font-family:var(--script);font-size:1.35rem}
+.bringlist{font-size:1.95rem}
+.bringlist li::before{content:"\2022";color:var(--frame);font-family:var(--body);font-size:1.4rem;line-height:1;flex:none;transform:translateY(-2px)}
 </style>
 <style>body{margin:0}</style>
 </head>
@@ -323,7 +325,7 @@ form .hint{margin:0;color:var(--muted);font-size:.88rem}
       li.append(n,p);
       if(r.status==="ja"&&r.bring){
         const b=document.createElement("span");b.className="bring";b.textContent="Bringt mit: "+r.bring;li.append(b);
-        bl.append(noteRow(r.bring));nb++;
+        bl.append(noteRow(r.bring,r.name));nb++;
       }
       list.append(li);
     }
