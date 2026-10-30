@@ -29,10 +29,11 @@ h1,h2{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
 .hero-in{position:relative;max-width:760px;margin:0 auto;padding-block:56px 120px;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600;margin:0 0 18px}
-h1{display:grid;gap:0}
+h1{display:grid;gap:0;justify-items:center;text-align:center}
+.eyebrow{text-align:center}
 h1 .big{font-size:clamp(4.2rem,19vw,8.5rem);font-weight:800;letter-spacing:-.015em;line-height:.88;-webkit-text-stroke:6px var(--frame);paint-order:stroke fill}
-h1 .script{font-family:var(--script);font-weight:600;font-size:clamp(2.6rem,10vw,4.6rem);color:var(--gold);line-height:1;margin:-.08em 0 0 .08em;transform:rotate(-3deg);transform-origin:left center}
-.lead{margin:26px 0 0;max-width:52ch;color:color-mix(in srgb,var(--hero-ink) 82%,transparent);font-size:1.08rem}
+h1 .script{font-family:var(--script);font-weight:600;font-size:clamp(2.6rem,10vw,4.6rem);color:var(--gold);line-height:1;margin:-.08em 0 0 0;transform:rotate(-3deg);transform-origin:center}
+.lead{margin:26px auto 0;text-align:center;text-wrap:pretty;max-width:52ch;color:color-mix(in srgb,var(--hero-ink) 82%,transparent);font-size:1.08rem}
 .lead .levyn{color:var(--gold);font-weight:600;white-space:nowrap}
 .garland{position:absolute;left:0;right:0;bottom:0;width:100%;height:46px;display:block}
 
@@ -80,6 +81,8 @@ legend,label.lbl{font-weight:600;font-size:.95rem;margin-bottom:6px;padding:0}
 .choices label{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer;background:var(--bg);transition:border-color .15s}
 .choices input{accent-color:var(--pine)}
 .choices label:has(input:checked){border-color:var(--pine);background:color-mix(in srgb,var(--pine) 10%,var(--surface))}
+select{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);min-width:12rem;max-width:100%}
+select:focus-visible{outline:2px solid var(--berry);outline-offset:2px}
 input[type=text]{width:100%;box-sizing:border-box;font:inherit;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
 input:focus-visible,button:focus-visible,.choices label:has(input:focus-visible){outline:2px solid var(--berry);outline-offset:2px}
 .check{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
@@ -132,6 +135,20 @@ footer .script{font-family:var(--script);font-size:1.6rem;color:var(--pine);disp
   .garland circle:nth-of-type(3n){animation-delay:.9s}.garland circle:nth-of-type(3n+1){animation-delay:1.7s}
 }
 @keyframes glow{50%{opacity:.4}}
+.menu li{position:relative;padding:22px 10px 16px}
+.menu li::after{content:"";position:absolute;top:-12px;right:-8px;width:40px;height:30px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2040%2030%22%3E%3Cpath%20d%3D%22M20%2016C14%206%204%208%202%204c4%208-2%2010%202%2014%203-3%208-2%2016-2z%22%20fill%3D%22%232f6b4f%22/%3E%3Cpath%20d%3D%22M20%2016c6-10%2016-8%2018-12-4%208%202%2010-2%2014-3-3-8-2-16-2z%22%20fill%3D%22%233d7f5e%22/%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2218%22%20r%3D%223.4%22%20fill%3D%22%23c22e47%22/%3E%3Ccircle%20cx%3D%2223%22%20cy%3D%2218%22%20r%3D%223.4%22%20fill%3D%22%23c22e47%22/%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2222.5%22%20r%3D%223.4%22%20fill%3D%22%23a8243b%22/%3E%3C/svg%3E") no-repeat center/contain}
+.menu svg{width:52px;height:52px}
+.menu small{display:block;font-weight:400;font-size:.85rem;color:var(--muted);margin-top:-4px}
+
+h1 .big .l{display:inline-block}
+@media (prefers-reduced-motion:no-preference){
+  h1 .big .l{animation:kdrop .9s cubic-bezier(.2,.9,.3,1.35) both,kbob 3.8s ease-in-out infinite;animation-delay:calc(var(--i)*.13s),calc(1s + var(--i)*.3s)}
+  h1 .script{animation:kfade 1s .9s both}
+}
+@keyframes kdrop{from{transform:translateY(-110%) rotate(-14deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes kbob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-7px) rotate(-2.5deg)}}
+@keyframes kfade{from{opacity:0;filter:blur(6px)}to{opacity:1;filter:none}}
+
 .signup{--ink:#2a1f17;--muted:#6e5f50;background:#f6edda;color:var(--ink);border:2px solid var(--frame);border-radius:14px;padding:22px;display:grid;gap:14px;justify-items:start;color-scheme:light}
 .signup p{margin:0;max-width:56ch}
 .signup .hint{color:var(--muted);font-size:.9rem}
@@ -139,6 +156,8 @@ footer .script{font-family:var(--script);font-size:1.6rem;color:var(--pine);disp
 .cta:hover{transform:translateY(-1px)}
 .cta:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .cta[aria-disabled="true"]{opacity:.6;pointer-events:none}
+form .hint{margin:0;color:var(--muted);font-size:.88rem}
+.status.err{color:var(--berry);font-weight:600}
 </style>
 <style>body{margin:0}</style>
 </head>
@@ -148,8 +167,8 @@ footer .script{font-family:var(--script);font-size:1.6rem;color:var(--pine);disp
 <header class="hero">
   <div class="hero-in">
     <p class="eyebrow">Weihnachts-Get-together</p>
-    <h1><span class="big">KRUSO</span><span class="script">Weihnachten</span></h1>
-    <p class="lead">Zwischen den Feiertagen gemütlich zusammensitzen: Kaffee, Kuchen und ein paar Snacks. Dieses Jahr ist es <strong class="levyn">★ Levyns erstes Weihnachtsfest</strong>, das feiern wir gleich mit. Gross und Klein sind herzlich willkommen! Meldet euch bitte unten an, damit am Schluss niemand ums letzte Stück Kuchen kämpfen muss.</p>
+    <h1 aria-label="Kruso Weihnachten"><span class="big" aria-hidden="true"><span class="l" style="--i:0">K</span><span class="l" style="--i:1">R</span><span class="l" style="--i:2">U</span><span class="l" style="--i:3">S</span><span class="l" style="--i:4">O</span></span><span class="script" aria-hidden="true">Weihnachten</span></h1>
+    <p class="lead">Zwischen den Feiertagen gemütlich zusammensitzen: Kaffee, Kuchen und ein paar Snacks. Dieses Jahr ist es <strong class="levyn">Levyns erstes Weihnachtsfest</strong>, das feiern wir gleich mit. Gross und Klein sind herzlich willkommen! Meldet euch bitte unten an, damit am Schluss niemand ums letzte Stück Kuchen kämpfen muss.</p>
   </div>
   <svg class="garland" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true">
     <path d="M0 8 Q150 40 300 14 T600 14 T900 14 T1200 8" fill="none" stroke="var(--gold)" stroke-opacity=".5" stroke-width="1.5"/>
@@ -179,19 +198,61 @@ footer .script{font-family:var(--script);font-size:1.6rem;color:var(--pine);disp
   <section aria-labelledby="h-menu">
     <h2 id="h-menu">Was es gibt</h2>
     <ul class="menu">
-      <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 16h20v9a9 9 0 0 1-9 9h-2a9 9 0 0 1-9-9z" fill="var(--pine)"/><path d="M28 19h3a4 4 0 0 1 0 8h-3" fill="none" stroke="var(--pine)" stroke-width="2.5"/><path d="M14 6c-2 3 2 4 0 7M20 5c-2 3 2 4 0 7" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round"/></svg>Kaffee</li>
-      <li><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 20l28-8v18H6z" fill="var(--gold)"/><path d="M6 20l28-8v5L6 25z" fill="var(--berry)"/><circle cx="26" cy="9" r="3" fill="var(--berry)"/></svg>Kuchen</li>
-      <li><svg viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="27" rx="15" ry="6" fill="var(--pine)"/><circle cx="13" cy="21" r="4" fill="var(--gold)"/><circle cx="21" cy="19" r="4" fill="var(--berry)"/><circle cx="28" cy="22" r="4" fill="var(--gold)"/></svg>Snacks</li>
+      <li><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M17 4c-3 4 3 5 0 9M24 3c-3 4 3 5 0 9M31 4c-3 4 3 5 0 9" fill="none" stroke="#b8a891" stroke-width="2" stroke-linecap="round"/><path d="M38 24h3a6 6 0 0 1 0 12h-4" fill="none" stroke="#c22e47" stroke-width="3.5"/><path d="M9 17h31v18a10 10 0 0 1-10 10H19A10 10 0 0 1 9 35z" fill="#c22e47"/><path d="M9 22h31" stroke="#fffaf0" stroke-width="2" stroke-dasharray="3 3"/><path d="M24.5 27l1.5 3.2 3.5.4-2.6 2.4.7 3.5-3.1-1.8-3.1 1.8.7-3.5-2.6-2.4 3.5-.4z" fill="#fffaf0"/><ellipse cx="24.5" cy="48" rx="17" ry="2.5" fill="#e0d1b5"/></svg>Kaffee<small>heiss und gemütlich</small></li>
+      <li><svg viewBox="0 0 52 52" aria-hidden="true"><path d="M6 24l40-10v26H6z" fill="#8a5a2b"/><path d="M6 32l40-6v4L6 36z" fill="#e8c27a"/><path d="M6 24l40-10v5c-3 2-4 6-6 3s-4 4-7 1-3 5-6 2-4 4-7 2-3 5-6 3-4 3-8 2z" fill="#fffaf0"/><path d="M27 10c-5-6-12-3-11 1 3-1 6 0 11-1zM27 10c3-7 11-6 11-1-3-1-6 0-11 1z" fill="#2f6b4f"/><circle cx="25" cy="12" r="2.8" fill="#c22e47"/><circle cx="29.5" cy="12" r="2.8" fill="#c22e47"/><ellipse cx="26" cy="46" rx="22" ry="3" fill="#e0d1b5"/></svg>Kuchen<small>süss und festlich</small></li>
+      <li><svg viewBox="0 0 52 52" aria-hidden="true"><ellipse cx="26" cy="40" rx="23" ry="7" fill="#e0d1b5"/><ellipse cx="26" cy="38" rx="20" ry="5.5" fill="#fffaf0"/><path d="M17 15l3.4 6.9 7.6 1.1-5.5 5.4 1.3 7.6-6.8-3.6-6.8 3.6 1.3-7.6L6 23l7.6-1.1z" fill="#c9952c"/><path d="M17 19l2 4 4.4.6-3.2 3.1.8 4.4-4-2.1-4 2.1.8-4.4-3.2-3.1 4.4-.6z" fill="#fffaf0"/><circle cx="36" cy="22" r="5" fill="#8a5a2b"/><path d="M36 27v9M30 30h12M31 41l5-5 5 5" stroke="#8a5a2b" stroke-width="5" stroke-linecap="round"/><circle cx="34.3" cy="21" r=".9" fill="#fffaf0"/><circle cx="37.7" cy="21" r=".9" fill="#fffaf0"/><path d="M34 24q2 1.5 4 0" stroke="#fffaf0" stroke-width=".9" fill="none"/><circle cx="36" cy="30" r="1" fill="#c22e47"/><circle cx="36" cy="33.5" r="1" fill="#c22e47"/></svg>Snacks<small>Guetzli und Knabbereien</small></li>
     </ul>
   </section>
 
   <section aria-labelledby="h-rsvp">
     <h2 id="h-rsvp">Anmeldung</h2>
-    <div class="signup">
-      <p>Gib uns bitte kurz Bescheid, ob du kommst, und wenn du magst, was du mitbringst.</p>
-      <a class="cta" id="signup-link" href="#" aria-disabled="true">&#9733; Jetzt anmelden</a>
-      <p class="hint" id="signup-hint">Das Anmeldeformular folgt in K&uuml;rze.</p>
+    <p class="notice" id="offline" hidden>Die Anmeldung ist gleich bereit. Schau bald wieder vorbei.</p>
+    <form id="rsvp" novalidate>
+      <div>
+        <label class="lbl" for="name">Dein Name</label>
+        <input type="text" id="name" maxlength="60" autocomplete="name" placeholder="z.B. Grittibänz Teigmann">
+      </div>
+      <fieldset>
+        <legend>Bist du dabei?</legend>
+        <div class="choices">
+          <label><input type="radio" name="status" id="st-ja" value="ja"> Ja, ich komme</label>
+          <label><input type="radio" name="status" id="st-nein" value="nein"> Leider nicht</label>
+        </div>
+      </fieldset>
+      <div id="persons-wrap" hidden>
+        <label class="lbl" for="persons">Wie viele Personen kommt ihr (inklusive dir)?</label>
+        <select id="persons">
+          <option value="1">1 Person</option><option value="2">2 Personen</option><option value="3">3 Personen</option>
+          <option value="4">4 Personen</option><option value="5">5 Personen</option><option value="6">6 Personen</option>
+          <option value="7">7 Personen</option><option value="8">8 Personen</option><option value="9">9 Personen</option>
+          <option value="10">10 Personen</option>
+        </select>
+      </div>
+      <div>
+        <label class="lbl" for="bring">Ich bringe mit (optional)</label>
+        <input type="text" id="bring" maxlength="80" placeholder="z.B. Zitronenkuchen, Chips, Mandarinli">
+      </div>
+      <div class="row">
+        <button type="submit" id="save">&#9733; Anmelden</button>
+        <p class="status" id="status" aria-live="polite"></p>
+      </div>
+      <p class="hint">Du willst deine Antwort &auml;ndern? Einfach nochmals mit dem gleichen Namen absenden.</p>
+    </form>
+  </section>
+
+  <section aria-labelledby="h-list">
+    <h2 id="h-list">Wer kommt</h2>
+    <div class="tally">
+      <div><b id="n-ja">0</b><span>Personen kommen</span></div>
+      <div><b id="n-nein">0</b><span>Absagen</span></div>
     </div>
+    <div class="bringbox">
+      <h3>Das wird mitgebracht</h3>
+      <ul class="bringlist" id="bringlist" hidden></ul>
+      <p id="bring-empty">Noch nichts eingetragen. Wer etwas mitbringt, schreibt es bei der Anmeldung ins Feld &laquo;Ich bringe mit&raquo;.</p>
+    </div>
+    <ul class="guests" id="guests"></ul>
+    <p class="empty" id="empty">Liste wird geladen &hellip;</p>
   </section>
 
   <footer><span class="script">Frohe Weihnachten &amp; bis bald!</span></footer>
@@ -218,6 +279,70 @@ footer .script{font-family:var(--script);font-size:1.6rem;color:var(--pine);disp
   const target=Date.UTC(2026,11,27,12,0);
   const days=Math.ceil((target-Date.now())/864e5);
   $("countdown").innerHTML = days>0 ? days+' '+(days===1?'Tag':'Tage') : (days===0?'heute':'vorbei');
+
+  // Anmeldung ueber Google-Tabelle
+  const ENDPOINT = "https://script.google.com/macros/s/AKfycbx3P-fbIyaEY0AMejz-wYIGrjcDcQcSNMKBDAXVI2TAw4_ivoEqln51WSLnlSR965E2IQ/exec"; // Web-App-URL aus Google Apps Script (endet auf /exec)
+  const form=$("rsvp"),save=$("save"),status=$("status");
+  let rows=[];
+
+  function render(){
+    const list=$("guests"),bl=$("bringlist");
+    const sorted=rows.slice().sort((a,b)=>(a.status==="ja"?0:1)-(b.status==="ja"?0:1));
+    list.textContent="";bl.textContent="";
+    let ja=0,nein=0,nb=0;
+    for(const r of sorted){
+      const pc=Math.max(1,Number(r.persons)||1);
+      if(r.status==="ja") ja+=pc; else nein++;
+      const li=document.createElement("li");
+      const n=document.createElement("span");n.className="name";n.textContent=r.name;
+      const p=document.createElement("span");p.className="pill "+(r.status==="ja"?"ja":"nein");p.textContent=r.status==="ja"?(pc>1?"Kommt \u00b7 "+pc+" Personen":"Kommt"):"Kommt nicht";
+      li.append(n,p);
+      if(r.status==="ja"&&r.bring){
+        const b=document.createElement("span");b.className="bring";b.textContent="Bringt mit: "+r.bring;li.append(b);
+        const c=document.createElement("li");c.textContent=r.bring;const s=document.createElement("span");s.textContent=r.name;c.append(s);bl.append(c);nb++;
+      }
+      list.append(li);
+    }
+    $("empty").textContent="Noch keine Antworten. Sei die oder der Erste!";
+    $("empty").hidden=sorted.length>0;
+    $("bring-empty").hidden=nb>0;bl.hidden=nb===0;
+    $("n-ja").textContent=ja;$("n-nein").textContent=nein;
+  }
+
+  async function load(){
+    try{
+      const res=await fetch(ENDPOINT,{cache:"no-store"});
+      const data=await res.json();
+      if(data&&data.ok){rows=(data.rows||[]).filter(r=>r&&r.name);render();}
+    }catch(e){$("empty").textContent="Die Liste konnte gerade nicht geladen werden. Lade die Seite sp\u00e4ter neu.";}
+  }
+
+  function togglePersons(){const st=form.querySelector("input[name=status]:checked");const on=!!st&&st.value==="ja";$("persons-wrap").hidden=!on;$("bring").closest("div").hidden=!!st&&st.value==="nein";}
+  form.addEventListener("change",togglePersons);
+  form.addEventListener("input",()=>{status.textContent="";status.className="status";});
+  form.addEventListener("submit",async e=>{
+    e.preventDefault();
+    const name=$("name").value.trim();
+    const st=form.querySelector("input[name=status]:checked");
+    status.className="status err";
+    if(!name){status.textContent="Bitte gib deinen Namen ein.";$("name").focus();return;}
+    if(!st){status.textContent="Bitte w\u00e4hle Ja oder Nein.";return;}
+    if(!ENDPOINT){status.textContent="Die Anmeldung ist noch nicht freigeschaltet.";return;}
+    save.disabled=true;status.className="status";status.textContent="Wird gespeichert \u2026";
+    try{
+      const res=await fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({name,status:st.value,persons:st.value==="ja"?Number($("persons").value):0,bring:st.value==="ja"?$("bring").value.trim():""})});
+      const data=await res.json().catch(()=>({ok:true}));
+      if(data&&data.ok===false) throw new Error(data.error||"fail");
+      status.textContent=st.value==="ja"?"Danke, "+name+"! Sch\u00f6n, dass du kommst.":"Danke f\u00fcr deine R\u00fcckmeldung, "+name+". Schade!";
+      try{localStorage.setItem("kruso-name",name);}catch(_){}
+      await load();
+    }catch(err){
+      status.className="status err";status.textContent="Speichern hat nicht geklappt. Bitte versuch es nochmals.";
+    }finally{save.disabled=false;}
+  });
+
+  try{const n=localStorage.getItem("kruso-name");if(n) $("name").value=n;}catch(_){}
+  if(ENDPOINT){load();}else{$("offline").hidden=false;$("empty").textContent="Noch keine Antworten.";}
 
 })();
 </script>
