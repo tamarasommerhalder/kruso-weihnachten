@@ -163,6 +163,18 @@ h1 .big .l{display:inline-block}
 .cta[aria-disabled="true"]{opacity:.6;pointer-events:none}
 form .hint{margin:0;color:var(--muted);font-size:.88rem}
 .status.err{color:var(--berry);font-weight:600}
+
+/* Mitbringliste als Einkaufszettel */
+.bringbox{position:relative;justify-self:center;width:100%;max-width:520px;box-sizing:border-box;background:#fffaf0;border:2px solid var(--frame);border-radius:6px;padding:20px 22px 18px 46px;gap:0;transform:rotate(-.8deg);background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 37px,#e3d4b8 37px,#e3d4b8 38px);background-position:0 58px}
+.bringbox::before{content:"";position:absolute;left:30px;top:0;bottom:0;width:1.5px;background:#e9a3ae}
+.bringbox::after{content:"";position:absolute;top:-14px;left:50%;width:90px;height:24px;margin-left:-45px;background:var(--frame);opacity:.85;border-radius:2px;transform:rotate(2deg)}
+.bringbox h3{line-height:38px;height:38px;font-size:1.05rem}
+.bringlist{display:block;font-family:var(--script);font-size:1.5rem;line-height:38px}
+.bringlist li{display:flex;align-items:baseline;gap:8px;background:none;border:0;border-radius:0;padding:0;font-size:inherit}
+.bringlist .item{min-width:0;overflow-wrap:anywhere}
+.bringlist .dots{flex:1;min-width:12px;margin:0;border-bottom:2px dotted #b8a891;transform:translateY(-6px)}
+.bringlist .who{color:#b0263d;font-size:inherit;margin:0;white-space:nowrap}
+.bringbox p{line-height:38px;font-family:var(--script);font-size:1.35rem}
 </style>
 <style>body{margin:0}</style>
 </head>
@@ -258,7 +270,7 @@ form .hint{margin:0;color:var(--muted);font-size:.88rem}
       <div><b id="n-nein">0</b><span>Absagen</span></div>
     </div>
     <div class="bringbox">
-      <h3>Das wird mitgebracht</h3>
+      <h3>Das wird bereits mitgebracht</h3>
       <ul class="bringlist" id="bringlist" hidden></ul>
       <p id="bring-empty">Noch nichts eingetragen. Wer etwas mitbringt, schreibt es bei der Anmeldung ins Feld &laquo;Ich bringe mit&raquo;.</p>
     </div>
@@ -272,6 +284,7 @@ form .hint{margin:0;color:var(--muted);font-size:.88rem}
 <script>
 (function(){
   const $=id=>document.getElementById(id);
+  function noteRow(item,who){const li=document.createElement("li");const a=document.createElement("span");a.className="item";a.textContent=item;const d=document.createElement("span");d.className="dots";li.append(a);if(who){li.append(d);}if(who){const w=document.createElement("span");w.className="who";w.textContent=who;li.append(w);}return li;}
 
   // Schneefall im Kopf
   (function(){
@@ -310,7 +323,7 @@ form .hint{margin:0;color:var(--muted);font-size:.88rem}
       li.append(n,p);
       if(r.status==="ja"&&r.bring){
         const b=document.createElement("span");b.className="bring";b.textContent="Bringt mit: "+r.bring;li.append(b);
-        const c=document.createElement("li");c.textContent=r.bring;const s=document.createElement("span");s.textContent=r.name;c.append(s);bl.append(c);nb++;
+        bl.append(noteRow(r.bring));nb++;
       }
       list.append(li);
     }
