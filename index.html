@@ -209,15 +209,15 @@ form .hint{margin:0;color:var(--muted);font-size:.88rem}
       <span class="t-sub">Kaffee, Kuchen &amp; Snacks</span>
     </div>
     <dl class="t-side">
-      <div class="t-row"><dt>Zeit</dt><dd>13:00 – 20:00 Uhr</dd></div>
+      <div class="t-row"><dt>Zeit</dt><dd>14:00 – 19:00 Uhr</dd></div>
       <div class="t-row"><dt>Ort</dt><dd>Uitikon <small>bei uns zuhause</small></dd></div>
       <div class="t-row"><dt>Noch</dt><dd id="countdown">–</dd></div>
     </dl>
   </div>
 
   <div class="cal"><span>Ab in den Kalender:</span>
-    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=KRUSO-Weihnachts-Get-together&dates=20261227T120000Z/20261227T190000Z&details=Kaffee%2C%20Kuchen%20und%20Snacks%20bei%20uns%20zuhause%20in%20Uitikon.%20Gross%20und%20Klein%20sind%20herzlich%20willkommen%21&location=Uitikon&ctz=Europe/Zurich" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><rect x="1.5" y="3" width="13" height="11.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 6.5h13M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.5"/></svg>Google</a>
-    <a href="https://outlook.office.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&rru=addevent&subject=KRUSO-Weihnachts-Get-together&startdt=2026-12-27T13%3A00%3A00%2B01%3A00&enddt=2026-12-27T20%3A00%3A00%2B01%3A00&location=Uitikon&body=Kaffee%2C%20Kuchen%20und%20Snacks%20bei%20uns%20zuhause%20in%20Uitikon.%20Gross%20und%20Klein%20sind%20herzlich%20willkommen%21" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><rect x="1.5" y="3" width="13" height="11.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 6.5h13M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.5"/></svg>Outlook</a>
+    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=KRUSO-Weihnachts-Get-together&dates=20261227T130000Z/20261227T180000Z&details=Kaffee%2C%20Kuchen%20und%20Snacks%20bei%20uns%20zuhause%20in%20Uitikon.%20Gross%20und%20Klein%20sind%20herzlich%20willkommen%21&location=Uitikon&ctz=Europe/Zurich" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><rect x="1.5" y="3" width="13" height="11.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 6.5h13M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.5"/></svg>Google</a>
+    <a href="https://outlook.office.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&rru=addevent&subject=KRUSO-Weihnachts-Get-together&startdt=2026-12-27T14%3A00%3A00%2B01%3A00&enddt=2026-12-27T19%3A00%3A00%2B01%3A00&location=Uitikon&body=Kaffee%2C%20Kuchen%20und%20Snacks%20bei%20uns%20zuhause%20in%20Uitikon.%20Gross%20und%20Klein%20sind%20herzlich%20willkommen%21" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><rect x="1.5" y="3" width="13" height="11.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 6.5h13M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.5"/></svg>Outlook</a>
     <button type="button" id="ics"><svg viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><rect x="1.5" y="3" width="13" height="11.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M1.5 6.5h13M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.5"/></svg>Apple &amp; andere (.ics)</button>
   </div>
 
@@ -303,7 +303,7 @@ form .hint{margin:0;color:var(--muted);font-size:.88rem}
   })();
 
   // Countdown bis 27.12.2026
-  const target=Date.UTC(2026,11,27,12,0);
+  const target=Date.UTC(2026,11,27,13,0);
   const days=Math.ceil((target-Date.now())/864e5);
   $("countdown").innerHTML = days>0 ? days+' '+(days===1?'Tag':'Tage') : (days===0?'heute':'vorbei');
 
@@ -375,7 +375,7 @@ form .hint{margin:0;color:var(--muted);font-size:.88rem}
   $("ics").addEventListener("click",()=>{
     const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Kruso//Weihnachten//DE","CALSCALE:GREGORIAN","METHOD:PUBLISH","BEGIN:VEVENT",
       "UID:kruso-weihnachten-2026@tamarasommerhalder.github.io","DTSTAMP:20261030T120000Z",
-      "DTSTART:20261227T120000Z","DTEND:20261227T190000Z","SUMMARY:KRUSO-Weihnachts-Get-together","LOCATION:Uitikon",
+      "DTSTART:20261227T130000Z","DTEND:20261227T180000Z","SUMMARY:KRUSO-Weihnachts-Get-together","LOCATION:Uitikon",
       "DESCRIPTION:Kaffee\\, Kuchen und Snacks bei uns zuhause in Uitikon. Gross und Klein sind herzlich willkommen!",
       "BEGIN:VALARM","TRIGGER:-P1D","ACTION:DISPLAY","DESCRIPTION:Morgen ist Kruso Weihnachten","END:VALARM",
       "END:VEVENT","END:VCALENDAR"].join("\r\n");
