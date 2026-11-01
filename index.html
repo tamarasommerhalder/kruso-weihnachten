@@ -178,6 +178,10 @@ form .hint{margin:0;color:var(--muted);font-size:.88rem}
 .bringbox p{line-height:38px;font-family:var(--script);font-size:1.35rem}
 .bringlist{font-size:1.95rem}
 .bringlist li::before{content:"\2022";color:var(--frame);font-family:var(--body);font-size:1.4rem;line-height:1;flex:none;transform:translateY(-2px)}
+
+.kruso-sub{display:block;font-family:var(--body);font-size:clamp(.74rem,2.3vw,.92rem);font-weight:400;letter-spacing:.16em;text-transform:uppercase;line-height:1.3;color:color-mix(in srgb,var(--hero-ink) 72%,transparent);margin:.75em 0 .3em}
+.kruso-sub b{font-family:var(--display);font-weight:800;font-size:1.3em;letter-spacing:.02em;color:var(--hero-ink);-webkit-text-stroke:2.5px var(--frame);paint-order:stroke fill}
+@media (prefers-reduced-motion:no-preference){.kruso-sub{animation:kfade 1s .8s both}}
 </style>
 <style>body{margin:0}</style>
 </head>
@@ -187,7 +191,7 @@ form .hint{margin:0;color:var(--muted);font-size:.88rem}
 <header class="hero">
   <div class="hero-in">
     <p class="eyebrow">Weihnachts-Get-together</p>
-    <h1 aria-label="Kruso Weihnachten"><span class="big" aria-hidden="true"><span class="l" style="--i:0">K</span><span class="l" style="--i:1">R</span><span class="l" style="--i:2">U</span><span class="l" style="--i:3">S</span><span class="l" style="--i:4">O</span></span><span class="script" aria-hidden="true">Weihnachten</span></h1>
+    <h1 aria-label="Kruso Weihnachten, Krummenacher und Sommerhalder"><span class="big" aria-hidden="true"><span class="l" style="--i:0">K</span><span class="l" style="--i:1">R</span><span class="l" style="--i:2">U</span><span class="l" style="--i:3">S</span><span class="l" style="--i:4">O</span></span><span class="kruso-sub" aria-hidden="true"><b>Kru</b>mmenacher &amp; <b>So</b>mmerhalder</span><span class="script" aria-hidden="true">Weihnachten</span></h1>
     <p class="lead">Zwischen den Feiertagen gemütlich zusammensitzen: Du bist herzlich eingeladen zu Kaffee und Kuchen bei uns. Dieses Jahr ist es <strong class="levyn">Levyns erstes Weihnachtsfest</strong>, und das feiern wir gleich mit. Gross und Klein sind herzlich willkommen! Meldet euch bitte unten an, damit am Schluss niemand ums letzte Stück Kuchen kämpfen muss.</p>
   </div>
   <svg class="garland" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true">
