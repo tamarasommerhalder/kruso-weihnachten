@@ -314,16 +314,16 @@ form .hint{margin:0;color:var(--muted);font-size:.88rem}
   // Anmeldung ueber Google-Tabelle
   const ENDPOINT = "https://script.google.com/macros/s/AKfycbx3P-fbIyaEY0AMejz-wYIGrjcDcQcSNMKBDAXVI2TAw4_ivoEqln51WSLnlSR965E2IQ/exec"; // Web-App-URL aus Google Apps Script (endet auf /exec)
   const form=$("rsvp"),save=$("save"),status=$("status");
-  let rows=[];
+  let rows=[],declined=null;
 
   function render(){
     const list=$("guests"),bl=$("bringlist");
-    const sorted=rows.slice().sort((a,b)=>(a.status==="ja"?0:1)-(b.status==="ja"?0:1));
+    const sorted=rows.filter(r=>r.status==="ja");
     list.textContent="";bl.textContent="";
     let ja=0,nein=0,nb=0;
     for(const r of sorted){
       const pc=Math.max(1,Number(r.persons)||1);
-      if(r.status==="ja") ja+=pc; else nein++;
+      ja+=pc;
       const li=document.createElement("li");
       const n=document.createElement("span");n.className="name";n.textContent=r.name;
       const p=document.createElement("span");p.className="pill "+(r.status==="ja"?"ja":"nein");p.textContent=r.status==="ja"?(pc>1?"Kommt \u00b7 "+pc+" Personen":"Kommt"):"Kommt nicht";
@@ -337,14 +337,15 @@ form .hint{margin:0;color:var(--muted);font-size:.88rem}
     $("empty").textContent="Noch keine Antworten. Sei die oder der Erste!";
     $("empty").hidden=sorted.length>0;
     $("bring-empty").hidden=nb>0;bl.hidden=nb===0;
-    $("n-ja").textContent=ja;$("n-nein").textContent=nein;
+    $("n-ja").textContent=ja;
+    $("n-nein").textContent=declined!=null?declined:rows.filter(r=>r.status==="nein").length;
   }
 
   async function load(){
     try{
       const res=await fetch(ENDPOINT,{cache:"no-store"});
       const data=await res.json();
-      if(data&&data.ok){rows=(data.rows||[]).filter(r=>r&&r.name);render();}
+      if(data&&data.ok){rows=(data.rows||[]).filter(r=>r&&r.name);declined=typeof data.declined==="number"?data.declined:null;render();}
     }catch(e){$("empty").textContent="Die Liste konnte gerade nicht geladen werden. Lade die Seite sp\u00e4ter neu.";}
   }
 
